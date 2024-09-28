@@ -17,14 +17,12 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Install Playwright
-        run: npm init playwright -- --quiet --install-deps --gha --browser chromium
+        run: npm init playwright -- --quiet --browser chromium
       - name: Check for changes in test files or Playwright config
         id: check_playwright_changes
-        run: |
-          git fetch origin main
-          # List files changed compared to main branch
-          TEST_CHANGES=$(git diff --name-only origin/main | grep '\.spec\.ts$' | tr '\n' ' ')
-          echo "list of added or changed tests: $TEST_CHANGES"
+        run: git fetch origin main
+      - name: list Playwright tests
+        run: git diff --name-only origin/main | grep '\.spec\.ts$' | tr '\n' ' '
       - name: Install Playwright
         run: npx playwright install
       - name: Run Playwright Tests
