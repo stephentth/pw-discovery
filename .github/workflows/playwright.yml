@@ -20,8 +20,7 @@ jobs:
         run: npm install
       - name: Install Playwright
         run: |
-          npm init playwright -- --quiet --browser chromium
-          npx playwright install
+          npx playwright install --with-deps
       - name: List playwright tests
         run: git diff --name-only origin/main | grep '\.spec\.ts$'
       - name: Run playwright tests
