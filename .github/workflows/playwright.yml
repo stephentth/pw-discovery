@@ -19,7 +19,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Install Playwright
-        run: npm init playwright -- --quiet --browser chromium
+        run: |
+          npm init playwright -- --quiet --browser chromium
+          npx playwright install
       - name: List playwright tests
         run: git diff --name-only origin/main | grep '\.spec\.ts$'
       - name: Run playwright tests
